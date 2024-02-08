@@ -1,2 +1,4 @@
-package com.cgi.currencyconverter.config;public class AuditorAwareImpl {
+package com.cgi.currencyconverter.config;
+public class AuditorAwareImpl {
+
 }
