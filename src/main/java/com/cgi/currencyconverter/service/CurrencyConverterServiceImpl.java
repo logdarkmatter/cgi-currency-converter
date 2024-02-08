@@ -1,2 +1,4 @@
-package com.cgi.currencyconverter.service;public class CurrencyConverterServiceInterface {
+package com.cgi.currencyconverter.service;
+
+public interface CurrencyConverterServiceImpl {
 }

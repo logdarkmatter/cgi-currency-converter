@@ -1,2 +1,4 @@
-package com.cgi.currencyconverter;public class CurrencyConverterApplicationConstants {
+package com.cgi.currencyconverter;
+
+public class CurrencyConverterApplicationConstants {
 }
