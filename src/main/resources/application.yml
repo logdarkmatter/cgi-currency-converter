@@ -1,3 +1,7 @@
+appName: "@description@"
+version: "@project.version@"
+envTarget: "@spring.profiles.active@"
+
 # Spring Boot configuration
 spring:
   profiles:
@@ -21,7 +25,7 @@ logging:
     console: "%d %-5level %logger : %msg%n"
   level:
     org.springframework: INFO
-    org.hibernate: DEBUG
+    org.hibernate: INFO
 
 # Server configuration
 server:
