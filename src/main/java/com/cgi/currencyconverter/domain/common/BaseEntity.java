@@ -1,4 +1,4 @@
-package com.cgi.currencyconverter.common.entity;
+package com.cgi.currencyconverter.domain.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

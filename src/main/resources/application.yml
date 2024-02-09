@@ -16,7 +16,10 @@ spring:
     password: password
   h2:
     console.enabled: true
-
+  # Flyway properties
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
   # JPA properties
   jpa:
     show-sql: true

@@ -1,6 +1,5 @@
-package com.cgi.currencyconverter.dto.audit;
+package com.cgi.currencyconverter.dto.common;
 
-import com.cgi.currencyconverter.dto.BaseDTO;
 import lombok.*;
 import org.springframework.data.annotation.ReadOnlyProperty;
 

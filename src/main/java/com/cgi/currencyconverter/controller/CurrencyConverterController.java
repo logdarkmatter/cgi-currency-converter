@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
@@ -34,20 +34,24 @@ public class CurrencyConverterController {
 
     @GetMapping("/currency-quotes")
     public String getCurrencyQuotes() {
-
         return currencyConverterService.getCurrencyQuotesList().toString();
     }
 
     @PostMapping("/save")
     public ResponseEntity createCurrency(@Valid @RequestBody CurrencyDTO currencyDTO) throws URISyntaxException {
 
-        log.debug("REST request to save Currency : {}", currencyDTO);
         if (!currencyDTO.isNew()) {
             throw new BadRequestAlertException("A new Currency cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
-        CurrencyDTO result = currencyConverterService.createCCurrency(currencyDTO);
-        return ResponseEntity.created(new URI("/api/client/" + result.getId())).body(result);
+        Optional<CurrencyDTO> createdCurrency = currencyConverterService.createCurrency(currencyDTO);
+
+        if (createdCurrency.isPresent()) {
+            CurrencyDTO currency = createdCurrency.get();
+            return ResponseEntity.created(new URI("/api/client/" + currency.getId())).body(currency);
+        } else {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
 }

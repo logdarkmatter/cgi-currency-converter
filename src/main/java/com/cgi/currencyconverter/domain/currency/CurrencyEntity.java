@@ -1,13 +1,12 @@
-package com.cgi.currencyconverter.domain;
+package com.cgi.currencyconverter.domain.currency;
 
-import com.cgi.currencyconverter.common.entity.BaseEntityAudit;
+import com.cgi.currencyconverter.domain.common.BaseEntityAudit;
 import com.cgi.currencyconverter.dto.currency.CurrencyDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 

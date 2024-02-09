@@ -9,5 +9,5 @@ public interface CurrencyConverterServiceImpl {
 
     List<String> getCurrencyQuotesList();
 
-    CurrencyDTO createCCurrency(CurrencyDTO currencyDTO);
+    Optional<CurrencyDTO> createCurrency(CurrencyDTO currencyDTO);
 }

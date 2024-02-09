@@ -1,4 +1,4 @@
-package com.cgi.currencyconverter.dto;
+package com.cgi.currencyconverter.dto.common;
 
 import org.springframework.data.annotation.ReadOnlyProperty;
 
