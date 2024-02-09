@@ -1,21 +1,33 @@
 package com.cgi.currencyconverter.domain;
 
 import com.cgi.currencyconverter.common.entity.BaseEntityAudit;
+import com.cgi.currencyconverter.dto.currency.CurrencyDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@EqualsAndHashCode(callSuper = true)
+import java.math.BigDecimal;
+
+
 @Entity
 @Table(name = "currency")
 @Data
-@ToString
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class CurrencyEntity extends BaseEntityAudit {
+    private static final long serialVersionUID = 1L;
+
+    public CurrencyEntity(CurrencyDTO currencyDTO) {
+        setName(currencyDTO.getName());
+        setCode(currencyDTO.getCode());
+        setRate(currencyDTO.getRate());
+    }
 
     private String name;
     private String code;
-    private double rate;
+    private BigDecimal rate;
 
 }
