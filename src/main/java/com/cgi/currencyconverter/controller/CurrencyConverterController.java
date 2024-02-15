@@ -1,6 +1,7 @@
 package com.cgi.currencyconverter.controller;
 
 import com.cgi.currencyconverter.controller.errors.BadRequestAlertException;
+import com.cgi.currencyconverter.controller.errors.CurrencyQuoteNoteFound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 import com.cgi.currencyconverter.dto.currency.CurrencyDTO;
 import com.cgi.currencyconverter.service.CurrencyConverterService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,20 +40,26 @@ public class CurrencyConverterController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity createCurrency(@Valid @RequestBody CurrencyDTO currencyDTO) throws URISyntaxException {
+    public ResponseEntity createCurrency(@Valid @RequestBody CurrencyDTO currencyDTO) {
 
-        if (!currencyDTO.isNew()) {
-            throw new BadRequestAlertException("A new Currency cannot already have an ID", ENTITY_NAME, "idexists");
+        try {
+            if (!currencyDTO.isNew()) {
+                throw new BadRequestAlertException("A new Currency cannot already have an ID", ENTITY_NAME, "idexists");
+            }
+
+            Optional<CurrencyDTO> createdCurrency = currencyConverterService.createCurrency(currencyDTO);
+
+            if (createdCurrency.isPresent()) {
+                CurrencyDTO currency = createdCurrency.get();
+                return ResponseEntity.created(new URI("/api/client/" + currency.getId())).body(currency);
+            }
+
+        } catch (URISyntaxException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        } catch (CurrencyQuoteNoteFound e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
-        Optional<CurrencyDTO> createdCurrency = currencyConverterService.createCurrency(currencyDTO);
-
-        if (createdCurrency.isPresent()) {
-            CurrencyDTO currency = createdCurrency.get();
-            return ResponseEntity.created(new URI("/api/client/" + currency.getId())).body(currency);
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        return ResponseEntity.internalServerError().build();
     }
-
 }
