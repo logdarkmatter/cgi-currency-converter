@@ -29,6 +29,12 @@ spring:
     hibernate:
       ddl-auto: update
 
+# Swagger
+springdoc:
+  swagger-ui:
+    path: swagger-ui-custom.html
+    operationsSorter: method
+
 # Logger configuration
 logging:
   pattern:
@@ -53,6 +59,10 @@ async:
   core-pool-size: 2
   max-pool-size: 50
   queue-capacity: 10000
+
+cgi:
+ devUrl:
+    server: "http://localhost:8080"
 
 rapidapi:
   host: "currency-exchange.p.rapidapi.com"
