@@ -77,7 +77,7 @@ O Currency Exchange API vem com uma interface Swagger embutida para facilitar a 
 
 - Inicie o servidor da API localmente.
 - Abra um navegador da web e vá para o seguinte URL: http://localhost:8080/swagger-ui/index.html.
-- Isso abrirá a interface do Swagger, onde você poderá visualizar todos os endpoints disponíveis, os seus detalhes, parâmetros e exemplos de requests e responses.
+- Isso abrirá a interface do Swagger, onde você poderá visualizar todos os endpoints disponíveis, os seus detalhes, Parametros e exemplos de requests e responses.
 ## Exercícios
 
 ### 1. Implementação de Novo Endpoint
@@ -122,3 +122,34 @@ public Optional<CurrencyDTO> createCurrency(CurrencyDTO currencyDTO) {
 - Verificar se a moeda fornecida (currencyDTO.getCode()) está presente na lista de quotes de moedas disponíveis.
 - Evitar a adição de moedas duplicadas, verificando assim se a moeda já existe no sistema antes de salvar.
 - Concluir a implementação do método para salvar a nova moeda na base de dados.
+
+### 3. Criação de um Novo Endpoint (getCurrencyByID)
+
+Implemente um novo endpoint que permita recuperar uma moeda com base no seu ID.
+
+#### Descrição do Novo Endpoint:
+
+- **Endpoint**: `/api/currency-converter/currencies/{id}`
+- **Método HTTP**: `GET`
+- **Parametro Path**: `id` (ID da moeda)
+- **Resposta Esperada**: Os detalhes da moeda correspondente ao ID fornecido.
+
+### 4. Criação de um Novo Endpoint (getCurrencyByName)
+
+Desenvolva um novo endpoint que permita recuperar uma moeda com base no seu nome.
+
+#### Descrição do Novo Endpoint:
+
+- **Endpoint**: `/api/currency-converter/currencies/{name}`
+- **Método HTTP**: `GET`
+- **Parametro Path**: `name` (Nome da moeda - EUR, USD, etc.)
+- **Resposta Esperada**: Os detalhes da moeda correspondente ao nome fornecido.
+
+### 5. Implementação de Operações CRUD (Create, Read, Update, Delete)
+
+Crie 2 endpoints à escolha para realizar as seguintes operações CRUD (Create, Read, Update, Delete) para as moedas.
+
+#### Descrição das Operações:
+
+- **Update**: Endpoint para atualizar os detalhes de uma moeda existente.
+- **Delete**: Endpoint para remover uma moeda do sistema.
