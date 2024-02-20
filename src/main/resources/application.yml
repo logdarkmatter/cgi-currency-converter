@@ -6,18 +6,34 @@ envTarget: "@spring.profiles.active@"
 spring:
   profiles:
     active: development
-
   application:
     name: Currency_Converter-Server
+  # Database
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+  h2:
+    console.enabled: true
+  # Flyway properties
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+  # JPA properties
+  jpa:
+    show-sql: true
+    database: h2
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
 
-  # Security properties
-  security:
-    authentication:
-      jwt:
-        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: YmQ1MzI0ZDAzZGYxZGM3ZjkyNDBlNjMwY2VmYzk0MDY2M2Q3MTFlNjNjZDI3MzMyMzk0OWM2MGJhOGM3NTI0OGQwZjAyNzYxYzU1NTFlMDA1ODk5ZjM5NmQ2Y2Q1NDVlODczYWJkMmQ2NDAzODcyMTkxMDA0NmYxYWZkYzVmZmU=
-        # Token is valid 24 hours
-        token-validity-in-seconds: 86400
+# Swagger
+springdoc:
+  swagger-ui:
+    path: swagger-ui-custom.html
+    operationsSorter: method
 
 # Logger configuration
 logging:
@@ -25,15 +41,13 @@ logging:
     console: "%d %-5level %logger : %msg%n"
   level:
     org.springframework: INFO
-    org.hibernate: INFO
-
+    org.hibernate: DEBUG
 # Server configuration
 server:
   port: 8080
   servlet:
     session:
       timeout: 30
-
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
@@ -41,8 +55,16 @@ cors:
   exposed-headers: "Authorization,Link,X-Total-Count"
   allow-credentials: true
   max-age: 1800
-
 async:
   core-pool-size: 2
   max-pool-size: 50
   queue-capacity: 10000
+
+cgi:
+ devUrl:
+    server: "http://localhost:8080"
+
+rapidapi:
+  host: "currency-exchange.p.rapidapi.com"
+  #IST TEMP KEY
+  key: "83f4dfc1c5msh9d76a4686489828p1f4e35jsn4fbff9b62181"
