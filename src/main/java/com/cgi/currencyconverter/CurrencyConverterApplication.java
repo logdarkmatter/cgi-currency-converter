@@ -48,7 +48,7 @@ public class CurrencyConverterApplication extends SpringBootServletInitializer {
                         \tApplication '{}' is running! Access URLs:
                         \tLocal: \t\t{}://localhost:{}{}
                         \tExternal: \t{}://{}:{}{}
-                        \tSwagger-UI: \t{}://localhost:{}{}{}
+                        \tSwagger-UI: {}://localhost:{}{}{}
                         \tProfile(s): \t{}
                         ----------------------------------------------------------""",
                 applicationName,

@@ -20,7 +20,6 @@ ${AnsiColor.BLUE}:: Running in ${spring.profiles.active} ::
 ${AnsiColor.WHITE}**************************************************************************************************
 ${AnsiColor.BLUE}:: Running Java Version: ${java.version} ::
 ${AnsiColor.WHITE} **************************************************************************************************
-${AnsiColor.BLUE} :: Running Spring Boot ${spring-boot.version} ::
-${AnsiColor.BLUE}:: Currency Converter ::
-${AnsiColor.DEFAULT}
+${AnsiColor.BLUE}:: Running Spring Boot ${spring-boot.version} ::
+${AnsiColor.BLUE}:: Currency Converter ::${AnsiColor.DEFAULT}
 *********************************************************************************************************************
