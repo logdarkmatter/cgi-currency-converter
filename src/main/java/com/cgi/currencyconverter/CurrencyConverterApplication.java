@@ -34,6 +34,7 @@ public class CurrencyConverterApplication extends SpringBootServletInitializer {
                 .filter(StringUtils::isNotBlank)
                 .orElse("/");
         String hostAddress = "localhost";
+        String swaggerPath = "swagger-ui/index.html";
         try {
             hostAddress = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
@@ -47,6 +48,7 @@ public class CurrencyConverterApplication extends SpringBootServletInitializer {
                         \tApplication '{}' is running! Access URLs:
                         \tLocal: \t\t{}://localhost:{}{}
                         \tExternal: \t{}://{}:{}{}
+                        \tSwagger-UI: \t{}://localhost:{}{}{}
                         \tProfile(s): \t{}
                         ----------------------------------------------------------""",
                 applicationName,
@@ -57,6 +59,10 @@ public class CurrencyConverterApplication extends SpringBootServletInitializer {
                 hostAddress,
                 serverPort,
                 contextPath,
+                protocol,
+                serverPort,
+                contextPath,
+                swaggerPath,
                 env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles()
         );
     }
